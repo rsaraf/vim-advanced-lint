@@ -17,31 +17,31 @@ if !exists('g:cpplint_cmd')
     let g:cpplint_cmd = "cpplint.py"
 endif
 
-let s:cpplint_cmd = g:cpplint_cmd
+"let s:cpplint_cmd = g:cpplint_cmd
 
 " extensions
-let s:cpplint_extensions="cc,h,cpp,hpp"
+let g:cpplint_extensions="cc,h,cpp,hpp"
 
 if exists("g:cpplint_extensions")
-    let s:cpplint_extensions=g:cpplint_extensions
+    let g:cpplint_extensions=g:cpplint_extensions
 endif
 
-let s:cpplint_cmd_opts = ' --extensions=' . s:cpplint_extensions . ' '
+let g:cpplint_cmd_opts = ' --extensions=' . g:cpplint_extensions . ' '
 
 " line length
 if exists('g:cpplint_line_length')
-    let s:cpplint_cmd_opts = s:cpplint_cmd_opts . ' --linelength=' . g:cpplint_line_length . ' '
+    let g:cpplint_cmd_opts = g:cpplint_cmd_opts . ' --linelength=' . g:cpplint_line_length . ' '
 endif
 
 " filters
 if exists('g:cpplint_filter')
-    let s:cpplint_cmd_opts = s:cpplint_cmd_opts . ' --filter=' . g:cpplint_filter . ' '
+    let g:cpplint_cmd_opts = g:cpplint_cmd_opts . ' --filter=' . g:cpplint_filter . ' '
 endif
 
 if !exists("*Cpplint()")
     function Cpplint()
-        if !executable(s:cpplint_cmd)
-            echoerr "File " . s:cpplint_cmd . " not found. Please install it first."
+        if !executable(g:cpplint_cmd)
+            echoerr "File " . g:cpplint_cmd . " not found. Please install it first."
             return
         endif
 
@@ -59,7 +59,7 @@ if !exists("*Cpplint()")
 
         " perform the grep itself
         let &grepformat = "%f:%l: %m"
-        let &grepprg    = s:cpplint_cmd . s:cpplint_cmd_opts . ' '
+        let &grepprg    = g:cpplint_cmd . g:cpplint_cmd_opts . ' '
         silent! grep! %
 
         " Ensure we don't give a popup saying 0 errors :P
