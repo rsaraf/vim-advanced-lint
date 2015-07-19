@@ -21,11 +21,11 @@ Installation
          
          " set the runtime path to include Vundle and initialize
          call plug#begin('~/.vim/bundle')
-         
-         Plug 'rsaraf/vim-advanced-lint'
+
          " Add all your other plugins here.
+         Plug 'rsaraf/vim-advanced-lint'
          
-         call plug#end()            " required
+         call plug#end()
          
    For more details on vim-plug
    
@@ -89,10 +89,10 @@ you can use this
 
     function! SetupEnvironment()
       let l:path = expand('%:p')
-      if l:path =~ '/home/user/projects/Project1'
+      if l:path =~ '/PROJECT1/'
         let g:cpplint_filter = '-runtime/references'
         autocmd BufWritePost *.h,*.cpp call Cpplint()
-      elseif l:path =~ '/home/user/projects'
+      elseif l:path =~ '/PROJECT2/'
         let g:cpplint_filter = '-legal/copyright'
         autocmd BufWritePost *.h,*.cpp call Cpplint()
       " For other projects, don't call Cpplint automatically
