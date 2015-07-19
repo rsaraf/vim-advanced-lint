@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 vim-advanced-lint
 ================
 A customizable c++ linting vim plugin that supports cpplint
@@ -62,3 +63,7 @@ you can use this
       endif
     endfunction
     autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+=======
+# vim-advanced-lint
+A customizable c++ linting vim plugin that supports cpplint
+>>>>>>> b79e7cc4b1894be6e745519ad375cfe29038e0a1
