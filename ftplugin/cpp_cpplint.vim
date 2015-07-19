@@ -13,33 +13,28 @@ if exists("b:loaded_cpplint_ftplugin")
 endif
 let b:loaded_cpplint_ftplugin=1
 
-if !exists('g:cpplint_cmd')
-    let g:cpplint_cmd = "cpplint.py"
-endif
-
 "let s:cpplint_cmd = g:cpplint_cmd
-
-" extensions
-let g:cpplint_extensions="cc,h,cpp,hpp"
-
-if exists("g:cpplint_extensions")
-    let g:cpplint_extensions=g:cpplint_extensions
-endif
-
-let g:cpplint_cmd_opts = ' --extensions=' . g:cpplint_extensions . ' '
-
-" line length
-if exists('g:cpplint_line_length')
-    let g:cpplint_cmd_opts = g:cpplint_cmd_opts . ' --linelength=' . g:cpplint_line_length . ' '
-endif
-
-" filters
-if exists('g:cpplint_filter')
-    let g:cpplint_cmd_opts = g:cpplint_cmd_opts . ' --filter=' . g:cpplint_filter . ' '
-endif
 
 if !exists("*Cpplint()")
     function Cpplint()
+        if !exists('g:cpplint_cmd')
+          let g:cpplint_cmd = "cpplint.py"
+        endif
+
+        let g:cpplint_cmd_opts = ''
+        if exists("g:cpplint_extensions")
+          let g:cpplint_cmd_opts = ' --extensions=' . g:cpplint_extensions . ' '
+        endif
+        " line length
+        if exists('g:cpplint_line_length')
+          let g:cpplint_cmd_opts = g:cpplint_cmd_opts . ' --linelength=' . g:cpplint_line_length . ' '
+        endif
+
+        " filters
+        if exists('g:cpplint_filter')
+          let g:cpplint_cmd_opts = g:cpplint_cmd_opts . ' --filter=' . g:cpplint_filter . ' '
+        endif
+
         if !executable(g:cpplint_cmd)
             echoerr "File " . g:cpplint_cmd . " not found. Please install it first."
             return
