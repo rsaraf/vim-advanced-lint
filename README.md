@@ -7,10 +7,12 @@ CPPLint is a tool by Google to check for style errors etc
 Installation
 ------------
 1. Use vim-plug plugin manager and add
-       Plug 'rsaraf/vim-advanced-lint'
+
+         Plug 'rsaraf/vim-advanced-lint'
 
 2. or use Vundle
-       Plugin 'rsaraf/vim-advanced-lint'
+
+         Plugin 'rsaraf/vim-advanced-lint'
 
 3. or use Pathogen
    and copy the contents of this repo to ~/.vim/bundle
@@ -26,25 +28,26 @@ jump to the error locations by simply pressing [Enter].
 Customization
 -------------
 OPTIONS AVAILABLE:
+
 1. 'g:cpplint_cmd'
 
-      Points to the cpplint executable
+         Points to the cpplint executable
 
-      Default => g:cpplint_cmd = 'cpplint.py'
+         Default => g:cpplint_cmd = 'cpplint.py'
 
 2. 'g:cpplint_extensions'
 
-      Specify the file extentions on which cpplint should be used
+         Specify the file extentions on which cpplint should be used
    
-      Default => g:cpplint_extensions = "cc,h,cpp,hpp"
+         Default => g:cpplint_extensions = "cc,h,cpp,hpp"
 
 3. 'g:cpplint_line_length'
      
-      Specify the line length check param. Passed to cpplint only when configured
+         Specify the line length check param. Passed to cpplint only when configured
 
 4. 'g:cpplint_filter'
 
-   Specify filters. Example g:cpplint_filter = '-runtime/references'
+         Specify filters. Example g:cpplint_filter = '-runtime/references'
 
 5. Anything else? Feel free to add!
 
@@ -67,11 +70,11 @@ you can use this
       let l:path = expand('%:p')
       if l:path =~ '/home/user/projects/Project1'
         let g:cpplint_filter = '-runtime/references'
+        autocmd BufWritePost *.h,*.cpp call Cpplint()
       elseif l:path =~ '/home/user/projects'
         let g:cpplint_filter = '-legal/copyright'
+        autocmd BufWritePost *.h,*.cpp call Cpplint()
+      " For other projects, don't call Cpplint automatically
       endif
     endfunction
     autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
-=======
-A customizable c++ linting vim plugin that supports cpplint
->>>>>>> b79e7cc4b1894be6e745519ad375cfe29038e0a1
