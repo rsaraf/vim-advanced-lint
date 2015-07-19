@@ -9,6 +9,27 @@ Installation
 1. Use vim-plug plugin manager and add
 
          Plug 'rsaraf/vim-advanced-lint'
+  
+   vim-plug is awesome. To have it configure it on its own, just add this to your .vimrc
+   
+         " automatically install plug.vim if not installed
+         if empty(glob('~/.vim/autoload/plug.vim'))
+           silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+              \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+           autocmd VimEnter * PlugInstall
+         endif
+         
+         " set the runtime path to include Vundle and initialize
+         call plug#begin('~/.vim/bundle')
+         
+         Plug 'rsaraf/vim-advanced-lint'
+         " Add all your other plugins here.
+         
+         call plug#end()            " required
+         
+   For more details on vim-plug
+   
+         https://github.com/junegunn/vim-plug
 
 2. or use Vundle
 
